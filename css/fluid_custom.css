@@ -12,7 +12,7 @@
 
 .index-read-more a {
   font-size: 0.85rem;
-  color: var(--primary-color, #555);
+  color: var(--text-color);
   text-decoration: none;
 }
 
