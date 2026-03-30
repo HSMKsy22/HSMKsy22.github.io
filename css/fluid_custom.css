@@ -1,7 +1,10 @@
 .markdown-body p {
-  line-height: 1.5;              /* 行與行的間距 */
-  margin-bottom: 1.5rem !important; /* 段落與段落的間距 */
-  text-align: justify;           /* 左右對齊 */
+  line-height: 1.5;
+  /* 行與行的間距 */
+  margin-bottom: 1.5rem !important;
+  /* 段落與段落的間距 */
+  text-align: justify;
+  /* 左右對齊 */
 }
 
 /* 繼續閱讀按鈕 */
