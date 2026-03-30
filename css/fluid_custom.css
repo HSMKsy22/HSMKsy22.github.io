@@ -3,3 +3,19 @@
   margin-bottom: 1.5rem !important; /* 段落與段落的間距 */
   text-align: justify;           /* 左右對齊 */
 }
+
+/* 繼續閱讀按鈕 */
+.index-read-more {
+  margin-top: 0.75rem;
+  text-align: right;
+}
+
+.index-read-more a {
+  font-size: 0.85rem;
+  color: var(--primary-color, #555);
+  text-decoration: none;
+}
+
+.index-read-more a:hover {
+  text-decoration: underline;
+}
