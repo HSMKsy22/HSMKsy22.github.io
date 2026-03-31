@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const content = document.querySelector('.post-content');
+    const content = document.querySelector('.markdown-body');
     if (!content) return; // 如果不是文章頁面就停止執行
 
     // 1. 初始化：優先從 localStorage 讀取舊設定，若無則預設 16
