@@ -101,7 +101,7 @@
     bottom: 12px;
     left: 12px;
     gap: 0;
-    padding: 5px 6px;
+    padding: 5px;
   }
 
   /* 手機版顯示切換按鈕 */
@@ -117,7 +117,7 @@
   #font-dec {
     flex-shrink: 0;
     width: 0;
-    height: 44px;
+    height: 0;
     max-width: 0;
     padding: 0;
     opacity: 0;
@@ -127,11 +127,12 @@
     pointer-events: none;
     transform: scale(0.3);
     transition:
-      max-width   0.25s ease-in,
-      width       0.25s ease-in,
-      opacity     0.18s ease-in,
-      margin-left 0.25s ease-in,
-      transform   0.25s ease-in,
+      max-width    0.25s ease-in,
+      width        0.25s ease-in,
+      height       0.25s ease-in,
+      opacity      0.18s ease-in,
+      margin-left  0.25s ease-in,
+      transform    0.25s ease-in,
       border-width 0.15s ease-in;
   }
 
@@ -139,6 +140,7 @@
   #font-adjust-ctrl.expanded #font-inc,
   #font-adjust-ctrl.expanded #font-dec {
     width: 44px;
+    height: 44px;
     max-width: 44px;
     padding: 0;
     opacity: 1;
@@ -147,11 +149,12 @@
     pointer-events: auto;
     transform: scale(1);
     transition:
-      max-width   0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
-      width       0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
-      opacity     0.28s ease-out 0.06s,
-      margin-left 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
-      transform   0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+      max-width    0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+      width        0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+      height       0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+      opacity      0.28s ease-out 0.06s,
+      margin-left  0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+      transform    0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
       border-width 0.1s ease-out;
   }
 
