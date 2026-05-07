@@ -98,10 +98,11 @@
 /* ── 手機版：可收合 widget ── */
 @media (max-width: 768px) {
   #font-adjust-ctrl {
-    bottom: 80px;
+    /* 貼底：相容 iOS Home Bar 安全區域 */
+    bottom: calc(15px + env(safe-area-inset-bottom, 0px));
     left: 12px;
-    gap: 6px;
-    padding: 6px 5px;
+    gap: 0; /* 改用 margin-left 控制間距，便於收合動畫 */
+    padding: 6px 8px;
   }
 
   /* 手機版顯示切換按鈕 */
@@ -112,18 +113,33 @@
     flex-shrink: 0;
   }
 
-  /* 手機版預設隱藏 A+ / A-（不靠 JS 判斷寬度，純 CSS 控制） */
+  /* 收合狀態：A+ / A- 不佔空間，等待展開動畫 */
   #font-inc,
   #font-dec {
-    display: none;
+    flex-shrink: 0;
+    max-width: 0;
+    opacity: 0;
+    overflow: hidden;
+    margin-left: 0;
+    pointer-events: none;
+    /* 收合：快速縮入 */
+    transition:
+      max-width  0.28s ease-in,
+      opacity    0.2s  ease-in,
+      margin-left 0.28s ease-in;
   }
 
-  /* 展開時才顯示 A+ / A- */
+  /* 展開動畫：帶彈跳感的 spring easing */
   #font-adjust-ctrl.expanded #font-inc,
   #font-adjust-ctrl.expanded #font-dec {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    max-width: 48px;
+    opacity: 1;
+    margin-left: 6px;
+    pointer-events: auto;
+    transition:
+      max-width   0.38s cubic-bezier(0.34, 1.56, 0.64, 1),
+      opacity     0.25s ease 0.05s,
+      margin-left 0.38s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 
   #font-adjust-ctrl button {
