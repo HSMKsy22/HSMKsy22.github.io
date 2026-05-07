@@ -13,8 +13,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const container = document.createElement('div');
     container.id = 'font-adjust-ctrl';
     container.innerHTML = `
-    <button id="font-dec" aria-label="縮小字體">A-</button>
     <button id="font-inc" aria-label="放大字體">A+</button>
+    <button id="font-dec" aria-label="縮小字體">A-</button>
   `;
     document.body.appendChild(container);
 
