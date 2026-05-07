@@ -102,16 +102,6 @@
     left: 12px;
     gap: 6px;
     padding: 6px 5px;
-    /* 展開/收合動畫 */
-    overflow: hidden;
-    max-width: 160px;
-    transition: max-width 0.3s ease, padding 0.3s ease;
-  }
-
-  /* 收合時只保留切換按鈕的寬度 */
-  #font-adjust-ctrl.collapsed {
-    max-width: 52px;
-    padding: 6px 5px;
   }
 
   /* 手機版顯示切換按鈕 */
@@ -122,21 +112,29 @@
     flex-shrink: 0;
   }
 
-  /* 收合時隱藏 A+ / A-（動畫後移除） */
-  #font-adjust-ctrl.collapsed #font-inc,
-  #font-adjust-ctrl.collapsed #font-dec {
+  /* 手機版預設隱藏 A+ / A-（不靠 JS 判斷寬度，純 CSS 控制） */
+  #font-inc,
+  #font-dec {
     display: none;
+  }
+
+  /* 展開時才顯示 A+ / A- */
+  #font-adjust-ctrl.expanded #font-inc,
+  #font-adjust-ctrl.expanded #font-dec {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   #font-adjust-ctrl button {
     width: 44px;
     height: 44px;
     font-size: 1rem;
-    /* 手機不需要 hover 縮放 */
     transition: background 0.2s ease, box-shadow 0.2s ease;
   }
 
   #font-adjust-ctrl button:hover {
     transform: none;
   }
-}
+}
+

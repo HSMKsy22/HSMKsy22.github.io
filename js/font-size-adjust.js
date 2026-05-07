@@ -19,39 +19,32 @@ document.addEventListener('DOMContentLoaded', function () {
   `;
     document.body.appendChild(container);
 
-    // 3. 手機版：預設收合
-    if (window.innerWidth <= 768) {
-        container.classList.add('collapsed');
-    }
-
-    // 4. 定義儲存與套用函數
+    // 3. 定義儲存與套用函數
     const updateFontSize = (newSize) => {
         content.style.fontSize = newSize + 'px';
         localStorage.setItem('user-font-size', newSize);
     };
 
-    // 5. 自動收合計時器（手機版展開後 3 秒自動關閉）
+    // 4. 自動收合計時器（純 CSS 控制，3 秒後移除 expanded）
     let collapseTimer;
     const startCollapseTimer = () => {
         clearTimeout(collapseTimer);
-        if (window.innerWidth <= 768) {
-            collapseTimer = setTimeout(() => {
-                container.classList.add('collapsed');
-            }, 3000);
-        }
+        collapseTimer = setTimeout(() => {
+            container.classList.remove('expanded');
+        }, 3000);
     };
 
-    // 6. 切換按鈕事件（手機版）
+    // 5. 切換按鈕事件：切換 .expanded（完全靠 CSS media query 決定是否生效）
     document.getElementById('font-toggle').addEventListener('click', () => {
-        container.classList.toggle('collapsed');
-        if (!container.classList.contains('collapsed')) {
-            startCollapseTimer(); // 展開後開始倒數
+        container.classList.toggle('expanded');
+        if (container.classList.contains('expanded')) {
+            startCollapseTimer();
         } else {
             clearTimeout(collapseTimer);
         }
     });
 
-    // 7. 綁定 A+ / A- 事件
+    // 6. 綁定 A+ / A- 事件
     document.getElementById('font-dec').addEventListener('click', () => {
         if (currentSize > 12) {
             currentSize -= 1;
