@@ -97,11 +97,47 @@
 
 /* ── 手機版：可收合 widget ── */
 @media (max-width: 768px) {
+  /* 收合時：隱藏外框，只露出 toggle 按鈕 */
   #font-adjust-ctrl {
     bottom: 12px;
     left: 12px;
     gap: 0;
     padding: 5px;
+    /* 隱藏外框 */
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-color: transparent;
+    box-shadow: none;
+    /* 外框出現/消失的動畫 */
+    transition:
+      background     0.25s ease-in,
+      backdrop-filter 0.25s ease-in,
+      border-color   0.25s ease-in,
+      box-shadow     0.25s ease-in,
+      padding        0.25s ease-in;
+  }
+
+  /* 展開時：顯示毛玻璃外框 */
+  #font-adjust-ctrl.expanded {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-color: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
+    transition:
+      background     0.3s ease-out,
+      backdrop-filter 0.3s ease-out,
+      border-color   0.3s ease-out,
+      box-shadow     0.3s ease-out,
+      padding        0.3s ease-out;
+  }
+
+  /* 深色模式展開外框 */
+  [data-user-color-scheme="dark"] #font-adjust-ctrl.expanded,
+  .dark-mode #font-adjust-ctrl.expanded {
+    background: rgba(30, 30, 40, 0.45);
+    border-color: rgba(255, 255, 255, 0.12);
   }
 
   /* 手機版顯示切換按鈕 */
@@ -112,7 +148,7 @@
     flex-shrink: 0;
   }
 
-  /* 收合狀態：A+ / A- 按鈕隱藏 + 有動畫的過渡 */
+  /* 收合狀態：A+ / A- 完全隱藏 */
   #font-inc,
   #font-dec {
     flex-shrink: 0;
@@ -179,6 +215,4 @@
     transform: scale(0.88);
     transition: transform 0.1s ease;
   }
-}
-
-
+}
