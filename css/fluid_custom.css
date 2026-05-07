@@ -98,11 +98,10 @@
 /* ── 手機版：可收合 widget ── */
 @media (max-width: 768px) {
   #font-adjust-ctrl {
-    /* 貼底：相容 iOS Home Bar 安全區域 */
-    bottom: calc(15px + env(safe-area-inset-bottom, 0px));
+    bottom: 12px;
     left: 12px;
-    gap: 0; /* 改用 margin-left 控制間距，便於收合動畫 */
-    padding: 6px 8px;
+    gap: 0;
+    padding: 5px 6px;
   }
 
   /* 手機版顯示切換按鈕 */
@@ -113,33 +112,52 @@
     flex-shrink: 0;
   }
 
-  /* 收合狀態：A+ / A- 不佔空間，等待展開動畫 */
+  /* 收合狀態：A+ / A- 按鈕隱藏 + 有動畫的過渡 */
   #font-inc,
   #font-dec {
     flex-shrink: 0;
+    width: 0;
+    height: 44px;
     max-width: 0;
+    padding: 0;
     opacity: 0;
     overflow: hidden;
     margin-left: 0;
+    border-width: 0;
     pointer-events: none;
-    /* 收合：快速縮入 */
+    transform: scale(0.3);
     transition:
-      max-width  0.28s ease-in,
-      opacity    0.2s  ease-in,
-      margin-left 0.28s ease-in;
+      max-width   0.25s ease-in,
+      width       0.25s ease-in,
+      opacity     0.18s ease-in,
+      margin-left 0.25s ease-in,
+      transform   0.25s ease-in,
+      border-width 0.15s ease-in;
   }
 
-  /* 展開動畫：帶彈跳感的 spring easing */
+  /* 展開動畫 */
   #font-adjust-ctrl.expanded #font-inc,
   #font-adjust-ctrl.expanded #font-dec {
-    max-width: 48px;
+    width: 44px;
+    max-width: 44px;
+    padding: 0;
     opacity: 1;
     margin-left: 6px;
+    border-width: 1px;
     pointer-events: auto;
+    transform: scale(1);
     transition:
-      max-width   0.38s cubic-bezier(0.34, 1.56, 0.64, 1),
-      opacity     0.25s ease 0.05s,
-      margin-left 0.38s cubic-bezier(0.34, 1.56, 0.64, 1);
+      max-width   0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+      width       0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+      opacity     0.28s ease-out 0.06s,
+      margin-left 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+      transform   0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+      border-width 0.1s ease-out;
+  }
+
+  /* A- 按鈕延遲一點，產生錯落感 */
+  #font-adjust-ctrl.expanded #font-dec {
+    transition-delay: 0.04s;
   }
 
   #font-adjust-ctrl button {
@@ -152,5 +170,12 @@
   #font-adjust-ctrl button:hover {
     transform: none;
   }
+
+  /* 切換按鈕按下回饋 */
+  #font-toggle:active {
+    transform: scale(0.88);
+    transition: transform 0.1s ease;
+  }
 }
+
 
